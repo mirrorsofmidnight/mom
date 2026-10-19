@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mirrors of Midnight</title>
+<link rel="icon" type="image/png" href="assets/Logo.png">
+<style>
+@font-face { font-family: 'Vamp'; src: url('assets/Fonts/Vampire Zone.ttf') format('truetype'); }
+@font-face { font-family: 'DK'; src: url('assets/Fonts/DK Jambo.otf') format('opentype'); }
+@font-face { font-family: 'Happy'; src: url('assets/Fonts/HappyHalloween.ttf') format('truetype'); }
+@font-face { font-family: 'Mad'; src: url('assets/Fonts/Madwitch-Regular.otf') format('opentype'); }
+@font-face { font-family: 'Broom'; src: url('assets/Fonts/Wicked Broom.otf') format('opentype'); }
+
+:root {
+  --title: "Vamp", sans-serif;
+  --body: "Broom", sans-serif;
+  --night: #120e2b;
+  --plum: #2a1d5e;
+  --lilac: #b9a6ff;
+  --butter: #ffd76a;
+  --mist: #efeaff;
+  --mw: min(550px, 85vw);
+  --mh: 66dvh;
+  --knob-shift: 5dvh;
+  --bg-phone: url("assets/Backgrounds/BG 1 Verti.png");
+  --bg-desktop: url("assets/Backgrounds/BG 1 Horti 169.png");
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  overscroll-behavior: none;
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--body);
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--mist);
+  background-color: var(--night);
+}
+
+body.is-home {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  height: 100lvh;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: var(--bg-phone);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform .5s ease-in;
+}
+
+button, a {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--butter);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.stars i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  animation: tw 3s ease-in-out infinite;
+}
+
+@keyframes tw {
+  50% { opacity: .15; transform: scale(.6); }
+}
+
+.logo {
+  position: fixed;
+  left: 14px;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  z-index: 30;
+  display: block;
+  font-family: var(--title);
+  font-size: 20px;
+  color: var(--butter);
+  text-decoration: none;
+}
+
+.logo img {
+  display: block;
+  height: clamp(65px, 12vw, 100px);
+  width: auto;
+  transition: transform .3s cubic-bezier(.3,1.7,.5,1);
+}
+
+.logo:hover img,
+.logo:active img {
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.bar {
+  position: fixed;
+  right: 14px;
+  top: calc(10px + env(safe-area-inset-top, 0px));
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sound {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: 50%;
+  border: 2px solid var(--butter);
+  background: rgba(18,14,43,.6);
+  cursor: pointer;
+}
+
+.mirror {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: var(--mw);
+  height: var(--mh);
+  transform: translateX(-50%);
+  border: 4px solid var(--butter);
+  border-bottom: 0;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(170deg, rgba(185,166,255,.70), rgba(42,29,94,.60) 60%);
+  box-shadow: 0 0 0 6px rgba(170,130,255,.4), inset 0 0 60px rgba(185,166,255,.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 3dvh, 32px);
+  padding: 4dvh 22px calc(6dvh + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transform-origin: left center;
+  transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .5s ease-in;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.opening .mirror {
+  transform: translateX(-50%) perspective(900px) rotateY(-100deg);
+}
+
+.opening .knob {
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.going .mirror {
+  opacity: 0;
+}
+
+.mirror::before,
+.mirror::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,.14) 50%, transparent 58%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  animation: glint 6s linear infinite;
+}
+
+.mirror::after {
+  animation-delay: -3s;
+}
+
+@keyframes glint {
+  from { background-position: 100% 0; }
+  to   { background-position: 0% 0; }
+}
+
+h1 {
+  position: relative;
+  margin: 0;
+  font-family: var(--title);
+  font-weight: 200;
+  font-size: clamp(28px, 6vw, 46px);
+  line-height: 1;
+  color: var(--butter);
+  -webkit-text-stroke: 4px #162e9c;
+  paint-order: stroke fill;
+  text-shadow: 0 5px 0 #1a3a8f;
+}
+
+h1 .ch {
+  display: inline-block;
+  transition: transform .25s cubic-bezier(.3,1.8,.5,1);
+}
+
+h1 .ch:active {
+  transform: translateY(-10px) rotate(-8deg);
+}
+
+@media (hover: hover) {
+  h1 .ch:hover { transform: translateY(-10px) rotate(-8deg); }
+}
+
+h1 .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.lead {
+  position: relative;
+  max-width: 34ch;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #d8d0ff;
+  white-space: pre-line;
+}
+
+@media (min-width: 700px) {
+  .lead { font-size: 17px; }
+}
+
+.knob {
+  position: fixed;
+  z-index: 20;
+  top: calc(96dvh - var(--mh) / 2 + var(--knob-shift));
+  left: calc(50% + var(--mw) / 2);
+  width: clamp(46px, 12vw, 72px);
+  aspect-ratio: 1;
+  translate: calc(-100% - 12px) -50%;
+  transition: scale .3s cubic-bezier(.3,1.8,.5,1);
+  --glow: #ff4fa3;
+  animation: knobglow 2s ease-in-out infinite;
+}
+
+.knob:active { scale: 1.2; }
+
+@media (hover: hover) {
+  .knob:hover { scale: 1.12; }
+}
+
+.knob img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 5px 6px rgba(0,0,0,.4));
+  transition: opacity .6s;
+}
+
+.knob img.on {
+  opacity: 1;
+}
+
+@keyframes knobglow {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--glow)) brightness(.95); }
+  50%      { filter: drop-shadow(0 0 22px var(--glow)) brightness(1.2); }
+}
+
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background: var(--night);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s ease-out;
+}
+
+.mirror > h1,
+.mirror > .lead,
+#pages > * {
+  transition: opacity .45s ease-in, transform .45s ease-in;
+}
+
+.going::before {
+  transform: scale(1.3);
+}
+
+.going .veil {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.going .mirror > *,
+.going #pages > * {
+  opacity: 0;
+  transform: scale(1.12);
+}
+
+.enter::before {
+  animation: roomIn .9s ease-out both;
+}
+
+.enter .mirror > *,
+.enter #pages > * {
+  animation: contentIn .8s ease-out both;
+}
+
+@keyframes roomIn {
+  from { transform: scale(1.2); }
+  to   { transform: scale(1); }
+}
+
+@keyframes contentIn {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.turn-in #pages > * {
+  animation: pin .5s cubic-bezier(.2,.9,.3,1.1) both;
+}
+
+@keyframes pin {
+  from { opacity: 0; transform: translateY(24px); }
+}
+
+body:not(.is-home) .mirror,
+body:not(.is-home) .knob {
+  display: none;
+}
+
+.is-home #pages {
+  display: none;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 130px 20px 140px;
+}
+
+h2.pt {
+  margin: 0;
+  line-height: 0;
+}
+
+h2.pt img {
+  display: block;
+  height: clamp(60px, 14vw, 110px);
+  width: auto;
+  max-width: 100%;
+  filter: drop-shadow(0 5px 0 rgba(26,58,143,.8));
+}
+
+.sub {
+  max-width: 50ch;
+  margin: 14px 0 0;
+  font-size: 17px;
+  color: #d8d0ff;
+}
+
+.card {
+  border-radius: 26px;
+  background: var(--mist);
+  color: var(--night);
+  box-shadow: 0 6px 0 var(--plum), 0 18px 30px rgba(0,0,0,.35);
+}
+
+.foot {
+  margin: 50px 0 0;
+  font-size: 12px;
+  color: var(--butter);
+  opacity: .8;
+}
+
+.kb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--c, #aa82ff);
+  box-shadow: inset -3px -4px 7px rgba(18,14,43,.4), inset 3px 3px 5px rgba(255,255,255,.5);
+}
+
+.kb.img {
+  background: none;
+  box-shadow: none;
+  filter: drop-shadow(0 5px 6px rgba(0,0,0,.4));
+}
+
+.kb.key {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 0 14px rgba(255,255,255,.5));
+}
+
+.kb.img i {
+  display: none;
+}
+
+.kb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+.para {
+  margin-top: 28px;
+}
+
+.para p {
+  margin: 0 0 14px;
+  max-width: 56ch;
+  font-size: 17px;
+  color: #e2dcff;
+}
+
+.ai {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.face h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.rule {
+  padding: 0;
+  text-align: left;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.rh {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+}
+
+.rn {
+  position: relative;
+  flex: none;
+  width: 50px;
+  height: 50px;
+}
+
+.rh h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.rh p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  opacity: .75;
+}
+
+.rh .ar {
+  margin-left: auto;
+  font-size: 22px;
+  font-weight: 800;
+  transition: transform .3s;
+}
+
+.rule.open .ar {
+  transform: rotate(45deg);
+}
+
+.more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .35s ease;
+}
+
+.rule.open .more {
+  grid-template-rows: 1fr;
+}
+
+.more > div {
+  overflow: hidden;
+}
+
+.more p {
+  margin: 0 18px 16px;
+  padding-top: 12px;
+  border-top: 2px dashed rgba(18,14,43,.25);
+  font-size: 15px;
+}
+
+.line {
+  position: relative;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 34px;
+  top: 30px;
+  bottom: 30px;
+  border-left: 3px dashed rgba(255,255,255,.55);
+}
+
+.st {
+  position: relative;
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 26px;
+}
+
+.st .bt {
+  display: block;
+  width: 68px;
+  height: 68px;
+  transition: transform .5s cubic-bezier(.3,1.8,.5,1);
+}
+
+.st:hover .bt {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+.st .card {
+  padding: 16px 20px;
+}
+
+.st h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.st p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.st p a {
+  color: #006ee9;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.st p a b {
+  color: inherit;
+}
+
+.st p a:hover {
+  color: #6f6bf3;
+}
+
+.door {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 30px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--butter);
+  color: var(--night);
+  font-size: 19px;
+  font-weight: 800;
+  box-shadow: 0 6px 0 #c9962a, 0 14px 24px rgba(0,0,0,.35);
+  transition: transform .15s, box-shadow .15s;
+  text-decoration: none;
+}
+
+.door:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 #c9962a, 0 18px 28px rgba(0,0,0,.35);
+}
+
+.door:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #c9962a;
+}
+
+.door svg {
+  width: 24px;
+  height: 24px;
+}
+
+.admins {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 46px;
+  margin-top: 56px;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(18,14,43,.78);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mcard {
+  position: relative;
+  width: min(440px, 100%);
+  max-height: 85dvh;
+  overflow-y: auto;
+  padding: 32px 26px 26px;
+  text-align: center;
+  transform: scale(.9) translateY(20px);
+  transition: transform .4s cubic-bezier(.3,1.5,.5,1);
+}
+
+.modal.open .mcard {
+  transform: none;
+}
+
+.mx {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--butter);
+  color: var(--night);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #c9962a;
+}
+
+.mcard .ph {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 12px;
+  border: 0;
+  box-shadow: none;
+}
+
+.mcard .mn {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.mcard .sts {
+  margin: 8px auto 0;
+}
+
+.mcard .bio {
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.mcard .tdy {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.ad {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  height: 150px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  transition: translate .3s cubic-bezier(.3,1.7,.5,1);
+}
+
+.ad:hover {
+  translate: 0 -6px;
+}
+
+.ad:nth-child(1) {
+  justify-self: start;
+  rotate: -2deg;
+}
+
+.ad:nth-child(2) {
+  justify-self: center;
+  rotate: 1.5deg;
+}
+
+.ad:nth-child(3) {
+  justify-self: end;
+  rotate: -1.5deg;
+}
+
+.ad .face:not(.ph) {
+  top: 14px;
+}
+
+.ad .face {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-auto-rows: min-content;
+  align-content: center;
+  column-gap: 16px;
+  row-gap: 3px;
+  padding: 18px 20px;
+  background: linear-gradient(160deg, #fff 0%, var(--mist) 55%, #ddd3ff 100%);
+}
+
+.ad .face::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px dashed rgba(42,29,94,.28);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.ad .face > * {
+  grid-column: 2;
+  position: relative;
+}
+
+.ph {
+  grid-column: 1 !important;
+  grid-row: 1 / span 4;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  flex: none;
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  overflow: hidden;  
+  border: 4px solid var(--butter);
+  border-radius: 50%;
+  background: linear-gradient(160deg, var(--lilac), var(--plum));
+  box-shadow: 0 0 0 3px var(--plum), 0 8px 14px rgba(18,14,43,.35), inset 0 0 18px rgba(255,255,255,.35);
+}
+
+.ad .ph {
+  border: 0;
+  box-shadow: 0 6px 12px rgba(18,14,43,.25);
+}
+
+.ph img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.ph .in {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--title);
+  font-size: 44px;
+  color: rgba(255,255,255,.9);
+  border-radius: 50%;
+}
+
+.ad h3 {
+  margin: 10px 0 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.ad .sts {
+  margin-top: 8px;
+  justify-self: start;
+  margin: 2px 0 0;
+}
+
+.ad .tp {
+  margin: 6px 0 0;
+  font-size: 11px;
+}
+
+.sts {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  align-self: center;
+  margin: 6px 0 0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  box-shadow: 0 2px 0 var(--plum);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9a96ad;
+}
+
+.sts.on .dot {
+  background: #2fb46a;
+  animation: ping 1.6s infinite;
+}
+
+@keyframes ping {
+  to { box-shadow: 0 0 0 9px rgba(47,180,106,0); }
+}
+
+.tp {
+  margin: auto 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: .55;
+}
+
+.bio {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.tdy {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dock {
+  position: fixed;
+  left: 50%;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  display: none;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(18,14,43,.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 2px rgba(185,166,255,.4), 0 10px 24px rgba(0,0,0,.4);
+  transform: translateX(-50%);
+}
+
+body:not(.is-home) .dock {
+  display: flex;
+}
+
+.dk {
+  position: relative;
+  display: block;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  transition: transform .25s cubic-bezier(.3,1.7,.5,1);
+}
+
+.dk:hover {
+  transform: translateY(-6px) rotate(25deg) scale(1.1);
+}
+
+.dk.cur {
+  transform: translateY(-6px) scale(1.15);
+  filter: drop-shadow(0 0 8px var(--butter));
+}
+
+.dk .tipx {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--mist);
+  color: var(--night);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+}
+
+.dk:hover .tipx,
+.dk:focus-visible .tipx {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 110px 16px 130px; }
+  .st { grid-template-columns: 54px 1fr; }
+  .st .bt { width: 52px; height: 52px; }
+  .line::before { left: 26px; }
+}
+
+@media (max-width: 420px) {
+  .lead { font-size: 15px; }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --mw: min(680px, 46vw);
+    --mh: 74dvh;
+    --knob-shift: 9dvh;
+    --bg-phone: var(--bg-desktop);
+  }
+  .logo { left: 28px; top: calc(18px + env(safe-area-inset-top, 0px)); }
+  .bar { right: 28px; top: calc(24px + env(safe-area-inset-top, 0px)); }
+  .mirror { padding: 3dvh 44px calc(7dvh + env(safe-area-inset-bottom, 0px)); }
+  h1 { font-size: clamp(30px, 4.2vw, 35px); }
+  .lead { font-size: 20px; max-width: 38ch; }
+  .knob { width: 60px; }
+}
+
+@media (max-height: 520px) {
+  .lead { display: none; }
+  h1 { font-size: min(clamp(28px, 6vw, 46px), 13dvh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+  
+.zoom-out #pages > * {
+  transform-origin: center 35vh;
+  opacity: 0;
+  transform: scale(2.2);
+  filter: blur(10px);
+  transition: opacity .35s ease-in, transform .35s ease-in, filter .35s ease-in;
+}
+
+.zoom-in #pages > * {
+  transform-origin: center 35vh;
+  animation: zoomIn .6s cubic-bezier(.2,.9,.3,1) both;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(.55); filter: blur(8px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+h1 img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 5px 0 rgba(26,58,143,.8));
+}
+
+@media (max-height: 520px) {
+  h1 img { 
+    max-height: 13dvh;
+    width: auto; 
+  }
+}
+
+@media (min-width: 900px) {
+  h1 img {
+    max-width: 310px;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <a class="logo" id="logo" href="#home" aria-label="Mirrors of Midnight, home">
+    <img src="assets/Logo.png" alt="Mirrors of Midnight">
+  </a>
+
+  <div class="bar">
+    <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Sound">🔊</button>
+  </div>
+
+  <main class="mirror" id="mirror" aria-live="polite">
+    <h1 id="title"></h1>
+    <p class="lead" id="lead"></p>
+  </main>
+
+  <div id="pages"></div>
+  <nav class="dock" id="dock" aria-label="Pages"></nav>
+  <a class="knob" id="knob" href="#about"></a>
+  <div class="veil"></div>
+  
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mcard card">
+    <button class="mx" id="mx" type="button" aria-label="Close">✕</button>
+    <div id="mbody"></div>
+  </div>
+</div>
+
+  <audio id="bgm" src="assets/Audio/bgm.mp3" loop preload="auto"></audio>
+
+  <script>
+    const SITE = "Mirrors of Midnight";
+    const ORDER = ["home", "about", "rules", "join", "caretaker"];
+
+    const SLUGS = {
+      home:      "home",
+      about:     "about-us",
+      rules:     "house-rules",
+      join:      "key-to-other-houses",
+      caretaker: "the-moths"
+    };
+
+    const href = id => "#" + SLUGS[id];
+
+    const PAGES = {
+      home: {
+        en: {
+          title: 'They said, "Do not go through the little door."',
+          lead: "But aren't you curious about what's hiding behind it? Step closer... If you dare to find out."
+        }
+      }
+    };
+
+    const LABELS = {
+      en: { home: "Home", about: "About", rules: "House rules", join: "Key to other house", caretaker: "The caretaker" }
+    };
+
+    const BUTTONS = [
+      "assets/Button_Black.png",
+      "assets/Button_Pink.png",
+      "assets/Button_Vermillion.png",
+      "assets/Button_Chartreuse.png",
+      "assets/Button_Blue.png",
+      "assets/Button_Purple.png",
+      "assets/Button_Yellow.png",
+      "assets/Button_Light Blue.png",
+      "assets/Button_Pastel Purple.png",
+      "assets/Button_Pastel Yellow.png"
+    ];
+    
+    const KEYS = [
+      "assets/Key.png"
+    ];
+
+    const HOME_TITLE_IMG = "assets/Texts/Cover2.png";
+    
+    const TITLE_IMGS = {
+      about:     "assets/Texts/About Us.png",
+      rules:     "assets/Texts/House Rules.png",
+      join:      "assets/Texts/Key to Other Houses.png",
+      caretaker: "assets/Texts/The Moths.png"
+    };
+    
+    const USE = {
+      knob:  [1, 5, 2, 6],
+      rules: [1, 2, 3, 4, 5, 6, 7, 8],
+    };
+    
+    const DOCK_ICONS = [
+      "assets/Button_Pink.png",
+      "assets/Magic Stone.png",
+      "assets/Kunci.png",
+      "assets/Bobinski Ball.png"
+    ];
+
+    const COLORS = ["#3a3a4a", "#ff4fa3", "#ff5a36", "#b6e03a", "#4f8cff", "#aa82ff", "#ffd23a"];
+    const BGM_SRC = "assets/Audio/bgm.mp3";
+
+    const $ = id => document.getElementById(id);
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let lang = "en";
+    let page = "home";
+
+    const probe = new Image();
+    probe.onerror = () => { $("logo").textContent = SITE; };
+    probe.src = "assets/Logo.png";
+
+    function renderTitle(text) {
+      const t = $("title");
+      t.textContent = "";
+      t.setAttribute("aria-label", text.replace(/\n/g, " "));
+
+      text.split("\n").forEach((line, li) => {
+        if (li > 0) t.appendChild(document.createElement("br"));
+        line.split(" ").forEach((word, wi, arr) => {
+          const w = document.createElement("span");
+          w.className = "word";
+          w.setAttribute("aria-hidden", "true");
+
+          word.split("").forEach(c => {
+            const s = document.createElement("span");
+            s.className = "ch";
+            s.textContent = c;
+            w.appendChild(s);
+          });
+
+          t.appendChild(w);
+          if (wi < arr.length - 1) t.appendChild(document.createTextNode(" "));
+        });
+      });
+    }
+
+    function renderTitleImg(src, alt) {
+      const t = $("title");
+      t.textContent = "";
+      t.setAttribute("aria-label", alt);
+      const im = new Image();
+      im.alt = alt;
+      im.draggable = false;
+      im.src = src;
+      t.append(im);
+    }
+
+    const FOOTER = "2026. Mirrors of Midnight. All Rights Reserved.";
+    const TIMEZONE = "Asia/Jakarta";
+    const TZ_LABEL = "WIB";
+
+    const ADMINS = [
+      { name: "Jacqueline",   photo: "", hours: [[05,13],[05,13],[05,13],[05,13],[05,13],[05,13],[05,13]] },
+      { name: "Katsu",   photo: "assets/download.jpg", hours: [[13,21],[13,21],[13,21],[13,21],[13,21],[13,21],[13,21]] },
+      { name: "Gembili", photo: "", hours: [[21,05],[21,05],[21,05],[21,05],[21,05],[21,05],[21,05]] }
+    ];
+
+    const U = {
+      en: { open: "Tap to see details", hrs: "Working hours", today: "Today: ", off: "day off", to: " to ", on: "On duty now", offd: "Off duty", dl: ["M","T","W","T","F","S","S"] }
+    };
+
+    const C = {
+      en: {
+        about: {
+          p: ["TEXT TEXT TEXT TEXT TEXT"]
+        },
+        rules: {
+          l: "A few simple rules keep this place cozy. Tap a rule to read more.",
+          d: "Longer explanation of this rule, with an example of what is and isn't okay.",
+          r: [
+            ["Limited Interaction", "Mirrors of Midnight is a closed agency where all interactions are strictly limited to our own circle. Interacting and mentioning outsiders, also appearances in public groups is strictly prohibited."],
+            ["Allowed Face Claim", "We accept all-star face claims born between 2000 – 2010."],
+            ["Account Policy", "Each Doll is required to only use one account. If there is any issue with your account, please contact the Caretaker immediately."],
+            ["Muse Changes", "Hiatus and Temporary Swap aren’t allowed. However, there will be a muse change session later on, with further details to be announced."],
+            ["Keep It Comfortable", "Let’s keep things comfortable for everyone. Harsh or offensive jokes, doxing, NSFW content, or bringing up topics that may offend others are strictly prohibited."],
+            ["Event Duration", "Mirrors of Midnight will run for 7 days. We encourage everyone to stay active, take part throughout the event, follow the rules, and make the most of our time together."],
+            ["Maintenance Hours", "Maintenance Hour starts at 22:00 WIB every day for point calculation."],
+            ["Point Calculation System", "We use an average point system. Each Doll's daily points are calculated based on the overall average. However, on the first day, everyone must reach a minimum of 1,000 points."]
+          ]
+        },
+        join: {
+          l: "Four steps and the door is yours. Follow the thread from top to bottom.",
+          s: [
+            `Please make sure you’ve liked and followed the <a href="https://facebook.com/mirrorsofmidnight" target="_blank" rel="noopener"><b>Mirrors of Midnight</b></a> page, then take some time to read and understand the rules beforehand.`,
+            "There are <b>3 ways to join: Early Pass, Grand Opening, and Warslot.</b> The procedures for each will be explained on our page according to the timetable, so stay tuned for further updates.",
+            'Check the taken list and make sure your chosen muse is still available. Don’t forget to check the <a href="https://lnk.bio/mirrorsofmidnight" target="_blank" rel="noopener"><b>forbidden muse list</b></a> too.',
+            "Before filling out the form, please check our <b>Caretaker Criteria Form</b> as a guide for answering the questions.",
+            "Make sure the code you use follows the requirements. Don’t forget to take a screenshot of your code as you’ll need it for verification later.",            
+            "Once you’ve successfully secured the slot, create the account using your muse’s real name. Stage names are allowed, while English names are only permitted <b>IF your account has been suspended more than twice.</b> <br>Example:<br>Wonhee ✅<br>Taesan ✅<br>Mocha ❎<br>Juju ❎",
+            "Add <b>@Doll(Muse)</b> somewhere visible on your profile. Once done, do the verification through our page."
+          ]
+        },
+        care: {
+          l: "Meet the three people who keep the lights on. Tap a card to see details about them.",
+          ad: [
+            "Calm, composed, and impossible to rattle. Jacqueline watches over the door to our little Other World with the quiet authority of someone who has seen every trick in the book, and politely declines all of them. Her words are few, her standards are high, and her gaze misses absolutely nothing.<br>Beware the caretaker who never raises her voice, for she doesn’t need to. Beneath that elegant, unreadable surface is a guardian who keeps every secret safe, and the only buttons she’ll ever sew are the ones on your coat. <i>Mysterious? Perhaps. Trustworthy? Always.</i>",
+            "Warm, wise, and always one step ahead, like a black cat who knows exactly where the door leads. Katsu looks after everyone with a steady hand, a good piece of advice, and a joke that arrives just when you need it. Dependable, comforting, and occasionally a little too clever for his own good.<br>Beware the seemingly serious wisdom, for the moment he winks, you’re getting a life lesson wrapped in a terrible pun. <i>And if anyone ever offers you a “better” world with buttons for eyes, he’ll be the first to say: don’t. 🐈‍⬛</i>",
+            "Small, bright, and bouncing off the walls like a pumpkin full of candy. Gembili brings the sparkle to every corner of the house, with a giggle ready for every spooky moment and a hug ready for every nervous newcomer. Think tiny ghost energy, but with confetti!<br>Don’t be fooled by the cute button eyes and the sweet smile, because once Gembili starts cheering, there is very little chance of leaving the room in a bad mood. <i>The only thing she’s sewing into this Other World is joy!</i>"
+          ]
+        }
+      }
+    };
+
+    const el = (tag, cls, html) => {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (html != null) e.innerHTML = html;
+      return e;
+    };
+
+    const T = (tag, cls, txt) => {
+      const e = el(tag, cls);
+      e.textContent = txt;
+      return e;
+    };
+
+    const foot = () => T("p", "foot", FOOTER);
+
+    const head = lead => {
+      const w = el("div", "wrap");
+      const h = el("h2", "pt");
+      h.setAttribute("aria-label", LABELS[lang][page]);
+      const im = new Image();
+      im.alt = LABELS[lang][page];
+      im.draggable = false;
+      im.src = TITLE_IMGS[page];
+      h.append(im);
+      w.append(h);
+      if (lead) w.append(T("p", "sub", lead));
+      return w;
+    };
+
+    let tmr = null;
+    let lastPage = null;
+
+    function icon(src) {
+      const b = el("span", "kb img");
+      const im = new Image();
+      im.alt = "";
+      im.draggable = false;
+      im.onload = () => b.append(im);
+      im.src = src;
+      return b;
+    }
+
+    function kb(i, group = "rules") {
+      const list = USE[group];
+      return icon(BUTTONS[list[i % list.length]]);
+    }
+
+    function keyIcon(i) {
+      const b = icon(KEYS[i % KEYS.length]);
+      b.classList.add("key");
+      return b;
+    }
+
+    function dockIcon(id, i) {
+      return icon(DOCK_ICONS[i]);
+    }
+
+    function pgAbout(c, u) {
+      const w = head();
+      const a = c.about;
+      const pr = el("div", "para");
+      a.p.forEach(x => pr.append(T("p", "", x)));
+      w.append(pr);
+      return w;
+    }
+
+    function pgRules(c) {
+      const w = head(c.rules.l);
+      const l = el("div", "rules");
+      c.rules.r.forEach((r, i) => {
+        const x = el("button", "rule card", '<div class="rh"><span class="rn"></span><div><h3></h3></div><span class="ar">+</span></div><div class="more"><div><p class="d"></p></div></div>');
+        x.type = "button";
+        x.setAttribute("aria-expanded", "false");
+        const rn = x.querySelector(".rn");
+        rn.prepend(kb(i, "rules"));
+        x.querySelector("h3").textContent = r[0];
+        x.querySelector(".d").textContent = r[1];
+        x.onclick = () => x.setAttribute("aria-expanded", String(x.classList.toggle("open")));
+        l.append(x);
+      });
+      w.append(l, foot());
+      return w;
+    }
+
+    function pgJoin(c) {
+      const k = c.join;
+      const w = head(k.l);
+      const ol = el("ol", "line");
+      k.s.forEach((s, i) => {
+        const li = el("li", "st", '<span class="bt"></span><div class="card"><p></p></div>');
+        li.querySelector(".bt").append(keyIcon(i));
+        li.querySelector("p").innerHTML = s;
+        ol.append(li);
+      });
+      w.append(ol, foot());
+      return w;
+    }
+
+    const DK = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+
+    function clock() {
+      const p = new Intl.DateTimeFormat("en-US", { timeZone: TIMEZONE, weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+      const g = t => p.find(x => x.type === t).value;
+      return { day: DK[g("weekday")], hour: parseInt(g("hour"), 10) % 24 + parseInt(g("minute"), 10) / 60 };
+    }
+
+    const hh = v => String(v % 24).padStart(2, "0") + ":00";
+
+    function onDuty(h, n) {
+      const s = h[n.day];
+      if (!s) return false;
+      return s[1] >= s[0] ? n.hour >= s[0] && n.hour < s[1] : n.hour >= s[0] || n.hour < s[1];
+    }
+
+    function pgCare(c, u) {
+      const w = head(c.care.l);
+      const g = el("div", "admins");
+      const sts = [];
+      ADMINS.forEach((a, i) => {
+        const bio = c.care.ad[i];
+        const x = el("button", "ad", '<div class="ai"><div class="face card"><div class="ph"><span class="in"></span></div><h3></h3><p class="sts"><i class="dot"></i><span></span></p><p class="tp"></p></div></div>');
+        x.type = "button";
+        x.querySelector(".in").textContent = a.name.charAt(0);
+        x.querySelector("h3").textContent = a.name;
+        x.querySelector(".tp").textContent = u.open;
+        const im = new Image();
+        im.alt = "";
+        im.onload = () => { x.querySelector(".in").remove(); x.querySelector(".ph").append(im); };
+        im.src = a.photo;
+        sts.push({ n: x.querySelector(".sts"), a });
+        x.onclick = () => openCare(a, bio, u);
+        g.append(x);
+      });
+      const upd = () => {
+        const n = clock();
+        sts.forEach(o => {
+          const on = onDuty(o.a.hours, n);
+          o.n.classList.toggle("on", on);
+          o.n.querySelector("span").textContent = on ? u.on : u.offd;
+        });
+      };
+      upd();
+      tmr = setInterval(upd, 30000);
+      w.append(g, foot());
+      return w;
+    }
+
+    let lastFocus = null;
+
+    function openCare(a, bio, u) {
+      const now = clock();
+      const t = a.hours[now.day];
+      const on = onDuty(a.hours, now);
+
+      const body = $("mbody");
+      body.innerHTML =
+        '<div class="ph"><span class="in"></span></div>' +
+        '<h3 class="mn"></h3>' +
+        '<p class="sts' + (on ? " on" : "") + '"><i class="dot"></i><span></span></p>' +
+        '<p class="bio"></p>' +
+        '<p class="tdy"></p>';
+
+      body.querySelector(".in").textContent = a.name.charAt(0);
+      body.querySelector(".mn").textContent = a.name;
+      body.querySelector(".sts span").textContent = on ? u.on : u.offd;
+      body.querySelector(".bio").innerHTML = bio;
+      body.querySelector(".tdy").textContent =
+        u.today + (t ? hh(t[0]) + u.to + hh(t[1]) + " " + TZ_LABEL : u.off);
+
+      const im = new Image();
+      im.alt = "";
+      im.onload = () => { body.querySelector(".in").remove(); body.querySelector(".ph").append(im); };
+      im.src = a.photo;
+
+      lastFocus = document.activeElement;
+      $("modal").classList.add("open");
+      $("modal").setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      $("mx").focus();
+    }
+
+    function closeCare() {
+      $("modal").classList.remove("open");
+      $("modal").setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+
+    $("mx").addEventListener("click", closeCare);
+    $("modal").addEventListener("click", e => { if (e.target === $("modal")) closeCare(); });
+    addEventListener("keydown", e => { if (e.key === "Escape") closeCare(); });
+
+    function buildPage() {
+      const h = $("pages");
+      h.textContent = "";
+      h.append({ about: pgAbout, rules: pgRules, join: pgJoin, caretaker: pgCare }[page](C[lang], U[lang]));
+    }
+
+    function buildDock() {
+      const d = $("dock");
+      d.textContent = "";
+      ORDER.slice(1).forEach((id, i) => {
+        const a = el("a", "dk" + (id === page ? " cur" : ""));
+        a.href = href(id);
+        a.setAttribute("aria-label", LABELS[lang][id]);
+        a.append(dockIcon(id, i), T("span", "tipx", LABELS[lang][id]));
+        d.append(a);
+      });
+    }
+
+    function draw() {
+      closeCare();
+      const isHome = page === "home";
+      const L = isHome ? "en" : lang;
+      document.body.classList.toggle("is-home", isHome);
+      clearInterval(tmr);
+      if (isHome) {
+        const c = PAGES.home.en;
+        renderTitleImg(HOME_TITLE_IMG, c.title);
+        $("lead").textContent = c.lead;
+      } else {
+        buildPage();
+      }
+      buildDock();
+      if (lastPage !== page) {
+        scrollTo(0, 0);
+        lastPage = page;
+      }
+      document.title = (isHome ? "" : LABELS[L][page] + " · ") + SITE;
+      document.documentElement.lang = L;
+
+      const next = ORDER[(ORDER.indexOf(page) + 1) % ORDER.length];
+      $("knob").href = href(next);
+      $("knob").setAttribute("aria-label", LABELS[L][next]);
+    }
+
+    function routeFromHash() {
+      const s = location.hash.slice(1);
+      return ORDER.find(id => SLUGS[id] === s || id === s) || "home";
+    }
+
+    let busy = null;
+    let enterT = null;
+
+    function go() {
+      const target = routeFromHash();
+      if (target === page && $("title").childNodes.length) return;
+      if (reduce) { page = target; draw(); return; }
+
+      const body = document.body;
+      const inner = page !== "home" && target !== "home";
+
+      const swap = () => {
+        page = target;
+        draw();
+        body.classList.remove("going", "opening");
+        body.classList.add("enter");
+        clearTimeout(enterT);
+        enterT = setTimeout(() => body.classList.remove("enter"), 900);
+      };
+
+      if (inner) {
+        clearTimeout(busy);
+        clearTimeout(enterT);
+        body.classList.remove("turn-in", "going", "opening", "enter", "zoom-in");
+        body.classList.add("zoom-out");
+        busy = setTimeout(() => {
+          page = target;
+          draw();
+          body.classList.remove("zoom-out");
+          body.classList.add("zoom-in");
+          enterT = setTimeout(() => body.classList.remove("zoom-in"), 650);
+        }, 350);
+        return;
+      }
+
+      clearTimeout(busy);
+
+      if (page === "home") {
+        body.classList.add("opening");
+        busy = setTimeout(() => {
+          body.classList.add("going");
+          busy = setTimeout(swap, 600);
+        }, 600);
+      } else {
+        body.classList.add("going");
+        busy = setTimeout(swap, 500);
+      }
+    }
+
+    addEventListener("hashchange", go);
+
+    const bgm = $("bgm");
+    bgm.volume = 0.4;
+
+    let muted = false;
+    try { muted = localStorage.getItem("muted") === "1"; } catch (e) {}
+
+    function updateSoundBtn() {
+      $("sound").textContent = muted ? "🔇" : "🔊";
+      $("sound").setAttribute("aria-pressed", String(muted));
+    }
+
+    function playBgm() {
+      if (!muted) bgm.play().catch(() => {});
+    }
+
+    $("sound").addEventListener("click", e => {
+      e.stopPropagation();
+      muted = !muted;
+      try { localStorage.setItem("muted", muted ? "1" : "0"); } catch (err) {}
+      if (muted) bgm.pause(); else playBgm();
+      updateSoundBtn();
+    });
+
+    updateSoundBtn();
+    playBgm();
+    ["pointerdown", "keydown"].forEach(ev => addEventListener(ev, playBgm, { once: true }));
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) bgm.pause(); else playBgm();
+    });
+
+    const knobImgs = USE.knob.map(n => {
+      const img = new Image();
+      img.alt = "";
+      img.draggable = false;
+      img.src = BUTTONS[n];
+      $("knob").appendChild(img);
+      return img;
+    });
+
+    let currentKnob = 0;
+
+    function showKnob(i) {
+      knobImgs.forEach((img, n) => img.classList.toggle("on", n === i));
+      $("knob").style.setProperty("--glow", COLORS[USE.knob[i]]);
+    }
+
+    showKnob(0);
+
+    if (!reduce && knobImgs.length > 1) {
+      setInterval(() => {
+        currentKnob = (currentKnob + 1) % knobImgs.length;
+        showKnob(currentKnob);
+      }, 2500);
+    }
+
+    for (let i = 0; i < 60; i++) {
+      const d = document.createElement("i");
+      d.style.cssText =
+        "left:" + Math.random() * 100 + "%;" +
+        "top:" + Math.random() * 100 + "%;" +
+        "animation-delay:" + Math.random() * 3 + "s;" +
+        "transform:scale(" + (0.6 + Math.random()) + ")";
+      $("stars").appendChild(d);
+    }
+
+    page = routeFromHash();
+    draw();
+  </script>
+</body>
+</html>
