@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-visual">
   <title>Mirrors of Midnight</title>
   <link rel="icon" type="image/png" href="assets/Logo.png">
   <style>
-    @font-face {
-      font-family: 'Vamp';
-      src: url('assets/Fonts/Vampire Zone.ttf') format('truetype');
-    }
-
-    @font-face {
-      font-family: 'Happy';
-      src: url('assets/Fonts/HappyHalloween.ttf') format('truetype');
-    }
+    @font-face { font-family: 'Vamp'; src: url('assets/Fonts/Vampire Zone.ttf') format('truetype'); }
+    @font-face { font-family: 'Happy'; src: url('assets/Fonts/HappyHalloween.ttf') format('truetype'); }
 
     :root {
       --title: "Vamp", sans-serif;
@@ -102,10 +94,7 @@
     }
 
     @keyframes tw {
-      50% {
-        opacity: .15;
-        transform: scale(.6);
-      }
+      50% { opacity: .15; transform: scale(.6); }
     }
 
     .logo {
@@ -124,7 +113,7 @@
       display: block;
       height: clamp(60px, 12vw, 100px);
       width: auto;
-      transition: transform .3s cubic-bezier(.3, 1.7, .5, 1);
+      transition: transform .3s cubic-bezier(.3,1.7,.5,1);
     }
 
     .logo:hover img,
@@ -159,7 +148,7 @@
       line-height: 1;
       border-radius: 50%;
       border: 2px solid var(--butter);
-      background: rgba(18, 14, 43, .6);
+      background: rgba(18,14,43,.6);
       cursor: pointer;
     }
 
@@ -173,8 +162,8 @@
       border: 4px solid var(--butter);
       border-bottom: 0;
       border-radius: 15px 15px 0 0;
-      background: linear-gradient(170deg, rgba(185, 166, 255, .70), rgba(42, 29, 94, .60) 60%);
-      box-shadow: 0 0 0 6px rgba(170, 130, 255, .4), inset 0 0 60px rgba(185, 166, 255, .35);
+      background: linear-gradient(170deg, rgba(185,166,255,.70), rgba(42,29,94,.60) 60%);
+      box-shadow: 0 0 0 6px rgba(170,130,255,.4), inset 0 0 60px rgba(185,166,255,.35);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -186,7 +175,7 @@
       overflow-y: auto;
       scrollbar-width: none;
       transform-origin: left center;
-      transition: transform .9s cubic-bezier(.5, 0, .3, 1), opacity .5s ease-in;
+      transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .5s ease-in;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
@@ -210,7 +199,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .14) 50%, transparent 58%);
+      background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,.14) 50%, transparent 58%);
       background-size: 300% 100%;
       background-repeat: no-repeat;
       animation: glint 6s linear infinite;
@@ -221,12 +210,8 @@
     }
 
     @keyframes glint {
-      from {
-        background-position: 100% 0;
-      }
-      to {
-        background-position: 0% 0;
-      }
+      from { background-position: 100% 0; }
+      to   { background-position: 0% 0; }
     }
 
     h1 {
@@ -244,7 +229,7 @@
 
     h1 .ch {
       display: inline-block;
-      transition: transform .25s cubic-bezier(.3, 1.8, .5, 1);
+      transition: transform .25s cubic-bezier(.3,1.8,.5,1);
     }
 
     h1 .ch:active {
@@ -252,9 +237,7 @@
     }
 
     @media (hover: hover) {
-      h1 .ch:hover {
-        transform: translateY(-10px) rotate(-8deg);
-      }
+      h1 .ch:hover { transform: translateY(-10px) rotate(-8deg); }
     }
 
     h1 .word {
@@ -272,9 +255,7 @@
     }
 
     @media (min-width: 700px) {
-      .lead {
-        font-size: 17px;
-      }
+      .lead { font-size: 17px; }
     }
 
     .knob {
@@ -285,19 +266,15 @@
       width: clamp(46px, 12vw, 72px);
       aspect-ratio: 1;
       translate: calc(-100% - 12px) -50%;
-      transition: scale .3s cubic-bezier(.3, 1.8, .5, 1);
+      transition: scale .3s cubic-bezier(.3,1.8,.5,1);
       --glow: #ff4fa3;
       animation: knobglow 2s ease-in-out infinite;
     }
 
-    .knob:active {
-      scale: 1.2;
-    }
+    .knob:active { scale: 1.2; }
 
     @media (hover: hover) {
-      .knob:hover {
-        scale: 1.12;
-      }
+      .knob:hover { scale: 1.12; }
     }
 
     .knob img {
@@ -308,7 +285,7 @@
       object-fit: contain;
       pointer-events: none;
       opacity: 0;
-      filter: drop-shadow(0 5px 6px rgba(0, 0, 0, .4));
+      filter: drop-shadow(0 5px 6px rgba(0,0,0,.4));
       transition: opacity .6s;
     }
 
@@ -317,12 +294,8 @@
     }
 
     @keyframes knobglow {
-      0%, 100% {
-        filter: drop-shadow(0 0 4px var(--glow)) brightness(.95);
-      }
-      50% {
-        filter: drop-shadow(0 0 22px var(--glow)) brightness(1.2);
-      }
+      0%, 100% { filter: drop-shadow(0 0 4px var(--glow)) brightness(.95); }
+      50%      { filter: drop-shadow(0 0 22px var(--glow)) brightness(1.2); }
     }
 
     .veil {
@@ -366,34 +339,21 @@
     }
 
     @keyframes roomIn {
-      from {
-        transform: scale(1.2);
-      }
-      to {
-        transform: scale(1);
-      }
+      from { transform: scale(1.2); }
+      to   { transform: scale(1); }
     }
 
     @keyframes contentIn {
-      from {
-        opacity: 0;
-        transform: scale(.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(.9); }
+      to   { opacity: 1; transform: scale(1); }
     }
 
     .turn-in #pages > * {
-      animation: pin .5s cubic-bezier(.2, .9, .3, 1.1) both;
+      animation: pin .5s cubic-bezier(.2,.9,.3,1.1) both;
     }
 
     @keyframes pin {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
+      from { opacity: 0; transform: translateY(24px); }
     }
 
     body:not(.is-home) .mirror,
@@ -421,7 +381,7 @@
       height: clamp(60px, 14vw, 110px);
       width: auto;
       max-width: 100%;
-      filter: drop-shadow(0 5px 0 rgba(26, 58, 143, .8));
+      filter: drop-shadow(0 5px 0 rgba(26,58,143,.8));
     }
 
     .sub {
@@ -435,7 +395,7 @@
       border-radius: 26px;
       background: var(--mist);
       color: var(--night);
-      box-shadow: 0 6px 0 var(--plum), 0 18px 30px rgba(0, 0, 0, .35);
+      box-shadow: 0 6px 0 var(--plum), 0 18px 30px rgba(0,0,0,.35);
     }
 
     .foot {
@@ -452,17 +412,17 @@
       height: 100%;
       border-radius: 50%;
       background: var(--c, #aa82ff);
-      box-shadow: inset -3px -4px 7px rgba(18, 14, 43, .4), inset 3px 3px 5px rgba(255, 255, 255, .5);
+      box-shadow: inset -3px -4px 7px rgba(18,14,43,.4), inset 3px 3px 5px rgba(255,255,255,.5);
     }
 
     .kb.img {
       background: none;
       box-shadow: none;
-      filter: drop-shadow(0 5px 6px rgba(0, 0, 0, .4));
+      filter: drop-shadow(0 5px 6px rgba(0,0,0,.4));
     }
 
     .kb.key {
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, .9)) drop-shadow(0 0 14px rgba(255, 255, 255, .5));
+      filter: drop-shadow(0 0 6px rgba(255,255,255,.9)) drop-shadow(0 0 14px rgba(255,255,255,.5));
     }
 
     .kb.img i {
@@ -572,7 +532,7 @@
     .more p {
       margin: 0 18px 16px;
       padding-top: 12px;
-      border-top: 2px dashed rgba(18, 14, 43, .25);
+      border-top: 2px dashed rgba(18,14,43,.25);
       font-size: 15px;
     }
 
@@ -589,7 +549,7 @@
       left: 34px;
       top: 30px;
       bottom: 30px;
-      border-left: 3px dashed rgba(255, 255, 255, .55);
+      border-left: 3px dashed rgba(255,255,255,.55);
     }
 
     .st {
@@ -605,7 +565,7 @@
       display: block;
       width: 68px;
       height: 68px;
-      transition: transform .5s cubic-bezier(.3, 1.8, .5, 1);
+      transition: transform .5s cubic-bezier(.3,1.8,.5,1);
     }
 
     .st:hover .bt {
@@ -653,14 +613,14 @@
       color: var(--night);
       font-size: 19px;
       font-weight: 800;
-      box-shadow: 0 6px 0 #c9962a, 0 14px 24px rgba(0, 0, 0, .35);
+      box-shadow: 0 6px 0 #c9962a, 0 14px 24px rgba(0,0,0,.35);
       transition: transform .15s, box-shadow .15s;
       text-decoration: none;
     }
 
     .door:hover {
       transform: translateY(-3px);
-      box-shadow: 0 9px 0 #c9962a, 0 18px 28px rgba(0, 0, 0, .35);
+      box-shadow: 0 9px 0 #c9962a, 0 18px 28px rgba(0,0,0,.35);
     }
 
     .door:active {
@@ -687,7 +647,7 @@
       display: grid;
       place-items: center;
       padding: 20px;
-      background: rgba(18, 14, 43, .78);
+      background: rgba(18,14,43,.78);
       backdrop-filter: blur(6px);
       opacity: 0;
       pointer-events: none;
@@ -704,10 +664,10 @@
       width: min(440px, 100%);
       max-height: 85dvh;
       overflow-y: auto;
-      padding: 14px 14px 18px;
+      padding: 32px 26px 26px;
       text-align: center;
       transform: scale(.9) translateY(20px);
-      transition: transform .4s cubic-bezier(.3, 1.5, .5, 1);
+      transition: transform .4s cubic-bezier(.3,1.5,.5,1);
     }
 
     .modal.open .mcard {
@@ -729,6 +689,10 @@
       line-height: 1;
       cursor: pointer;
       box-shadow: 0 3px 0 #c9962a;
+    }
+
+    .mcard {
+      padding: 14px 14px 18px;
     }
 
     .mcard .ph {
@@ -763,7 +727,11 @@
 
     .mcard .mn,
     .mcard .sts,
-    .mcard .tdy,
+    .mcard .tdy {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+
     .mcard .bio {
       margin-left: 12px;
       margin-right: 12px;
@@ -801,7 +769,7 @@
       border: 0;
       padding: 0;
       text-align: left;
-      transition: translate .3s cubic-bezier(.3, 1.7, .5, 1);
+      transition: translate .3s cubic-bezier(.3,1.7,.5,1);
     }
 
     .ad:hover {
@@ -842,7 +810,7 @@
       content: "";
       position: absolute;
       inset: 8px;
-      border: 2px dashed rgba(42, 29, 94, .28);
+      border: 2px dashed rgba(42,29,94,.28);
       border-radius: 20px;
       pointer-events: none;
     }
@@ -867,7 +835,7 @@
       border: 4px solid var(--butter);
       border-radius: 50%;
       background: linear-gradient(160deg, var(--lilac), var(--plum));
-      box-shadow: 0 0 0 3px var(--plum), 0 8px 14px rgba(18, 14, 43, .35), inset 0 0 18px rgba(255, 255, 255, .35);
+      box-shadow: 0 0 0 3px var(--plum), 0 8px 14px rgba(18,14,43,.35), inset 0 0 18px rgba(255,255,255,.35);
     }
 
     .ad .face .ph {
@@ -882,7 +850,7 @@
       aspect-ratio: 3 / 4;
       border: 0;
       border-radius: 14px;
-      box-shadow: 0 6px 12px rgba(18, 14, 43, .25);
+      box-shadow: 0 6px 12px rgba(18,14,43,.25);
     }
 
     .ad .face .ph .in {
@@ -910,7 +878,7 @@
       place-items: center;
       font-family: var(--title);
       font-size: 44px;
-      color: rgba(255, 255, 255, .9);
+      color: rgba(255,255,255,.9);
       border-radius: 50%;
     }
 
@@ -959,9 +927,7 @@
     }
 
     @keyframes ping {
-      to {
-        box-shadow: 0 0 0 9px rgba(47, 180, 106, 0);
-      }
+      to { box-shadow: 0 0 0 9px rgba(47,180,106,0); }
     }
 
     .tp {
@@ -992,9 +958,9 @@
       gap: 10px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(18, 14, 43, .82);
+      background: rgba(18,14,43,.82);
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 0 2px rgba(185, 166, 255, .4), 0 10px 24px rgba(0, 0, 0, .4);
+      box-shadow: 0 0 0 2px rgba(185,166,255,.4), 0 10px 24px rgba(0,0,0,.4);
       transform: translateX(-50%);
     }
 
@@ -1008,7 +974,7 @@
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      transition: transform .25s cubic-bezier(.3, 1.7, .5, 1);
+      transition: transform .25s cubic-bezier(.3,1.7,.5,1);
     }
 
     .dk:hover {
@@ -1054,14 +1020,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
     }
 
     h1 img {
@@ -1070,7 +1030,7 @@
       max-width: 420px;
       height: auto;
       margin: 0 auto;
-      filter: drop-shadow(0 5px 0 rgba(26, 58, 143, .8));
+      filter: drop-shadow(0 5px 0 rgba(26,58,143,.8));
     }
 
     .sr {
@@ -1108,6 +1068,7 @@
       text-align: center;
     }
 
+    /* kanvas = komposisi "Assembled" (2698 x 2220). Semua posisi di bawah dalam persen kanvas. */
     .pump-c {
       position: relative;
       aspect-ratio: 2698 / 2220;
@@ -1149,10 +1110,10 @@
       position: absolute;
       left: 18.16%;
       top: 50%;
-      width: 1629px;
+      width: 1629px;                 
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      column-gap: 8px;
+      column-gap: 8px;              
       transform-origin: top left;
       transform: scale(var(--s, .16));
       z-index: 2;
@@ -1163,7 +1124,7 @@
       border-radius: 14%;
       background: var(--gold);
       color: #000180;
-      font: 800 160px/1 var(--body);
+      font: 800 160px/1 var(--body);  
       text-transform: uppercase;
       display: grid;
       place-items: center;
@@ -1222,13 +1183,8 @@
       pointer-events: none;
     }
 
-    .tstage.has-btn .go:hover {
-      transform: scale(1.04);
-    }
-
-    .tstage.has-btn .go:active {
-      transform: scale(.96);
-    }
+    .tstage.has-btn .go:hover { transform: scale(1.04); }
+    .tstage.has-btn .go:active { transform: scale(.96); }
 
     .msg {
       position: absolute;
@@ -1263,26 +1219,18 @@
       transform: translateY(105%);
       transition: transform .8s cubic-bezier(.2, .8, .25, 1);
     }
-
-    .pump-b {
-      z-index: 2;
-    }
-
-    .pump-o {
-      z-index: 6;
-    }
+    
+    .pump-b { z-index: 2; }
+    .pump-o { z-index: 6; }
 
     .tstage.result .pump-o,
     .tstage.result .pump-b {
       transform: translateY(20%);
       animation: pumpgone 1.2s 1s ease-in both;
     }
-
+    
     @keyframes pumpgone {
-      to {
-        opacity: 0;
-        transform: translateY(110%);
-      }
+      to { opacity: 0; transform: translateY(110%); }
     }
 
     .reveal {
@@ -1431,7 +1379,7 @@
       max-width: none;
       transform: scale(.160);
       transform-origin: center top;
-    }
+    }   
 
     .tstage.result .rtitle {
       animation: pop .5s 4.2s cubic-bezier(.3, 1.6, .5, 1) both;
@@ -1488,82 +1436,43 @@
     }
 
     @keyframes rise {
-      0% {
-        opacity: 1;
-        transform: translateY(46cqw);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(calc(var(--lift) * -1));
-      }
+      0%   { opacity: 1; transform: translateY(46cqw); }
+      100% { opacity: 1; transform: translateY(calc(var(--lift) * -1)); }
     }
 
     @keyframes flapopen {
-      0% {
-        transform: rotateX(0);
-        z-index: 3;
-      }
-      49% {
-        z-index: 3;
-      }
-      50% {
-        z-index: 0;
-      }
-      100% {
-        transform: rotateX(-180deg);
-        z-index: 0;
-      }
+      0%   { transform: rotateX(0); z-index: 3; }
+      49%  { z-index: 3; }
+      50%  { z-index: 0; }
+      100% { transform: rotateX(-180deg); z-index: 0; }
     }
 
     @keyframes sealgone {
-      to {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(.4);
-      }
+      to { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
     }
 
     @keyframes letterup {
-      from {
-        transform: translateY(calc(100% + 14cqw));
-      }
-      to {
-        transform: none;
-      }
+      from { transform: translateY(calc(100% + 14cqw)); }
+      to   { transform: none; }
     }
 
     @keyframes bob {
-      50% {
-        transform: translateY(-1.2cqw);
-      }
+      50% { transform: translateY(-1.2cqw); }
     }
 
     @keyframes fade {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
     @keyframes pop {
-      from {
-        opacity: 0;
-        transform: scale(.6);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(.6); }
+      to   { opacity: 1; transform: scale(1); }
     }
 
     @keyframes shake {
-      25% {
-        transform: translateX(-1.5cqw);
-      }
-      75% {
-        transform: translateX(1.5cqw);
-      }
+      25% { transform: translateX(-1.5cqw); }
+      75% { transform: translateX(1.5cqw); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1594,28 +1503,14 @@
     }
 
     @media (max-width: 640px) {
-      .wrap {
-        padding: 110px 16px 130px;
-      }
-
-      .st {
-        grid-template-columns: 54px 1fr;
-      }
-
-      .st .bt {
-        width: 52px;
-        height: 52px;
-      }
-
-      .line::before {
-        left: 26px;
-      }
+      .wrap { padding: 110px 16px 130px; }
+      .st { grid-template-columns: 54px 1fr; }
+      .st .bt { width: 52px; height: 52px; }
+      .line::before { left: 26px; }
     }
 
     @media (max-width: 420px) {
-      .lead {
-        font-size: 15px;
-      }
+      .lead { font-size: 15px; }
     }
 
     @media (min-width: 900px) {
@@ -1625,48 +1520,18 @@
         --knob-shift: 9dvh;
         --bg-phone: var(--bg-desktop);
       }
-
-      .logo {
-        left: 28px;
-        top: calc(18px + env(safe-area-inset-top, 0px));
-      }
-
-      .bar {
-        right: 28px;
-        top: calc(24px + env(safe-area-inset-top, 0px));
-      }
-
-      .mirror {
-        padding: 3dvh 44px calc(7dvh + env(safe-area-inset-bottom, 0px));
-      }
-
-      h1 {
-        font-size: clamp(30px, 4.2vw, 35px);
-      }
-
-      .lead {
-        font-size: 35px;
-        max-width: 45ch;
-      }
-
-      .knob {
-        width: 60px;
-      }
-
-      h1 img {
-        max-width: 310px;
-      }
+      .logo { left: 28px; top: calc(18px + env(safe-area-inset-top, 0px)); }
+      .bar { right: 28px; top: calc(24px + env(safe-area-inset-top, 0px)); }
+      .mirror { padding: 3dvh 44px calc(7dvh + env(safe-area-inset-bottom, 0px)); }
+      h1 { font-size: clamp(30px, 4.2vw, 35px); }
+      .lead { font-size: 35px; max-width: 45ch; }
+      .knob { width: 60px; }
+      h1 img { max-width: 310px; }
     }
 
     @media (max-height: 520px) {
-      .lead {
-        display: none;
-      }
-
-      h1 {
-        font-size: min(clamp(28px, 6vw, 46px), 13dvh);
-      }
-
+      .lead { display: none; }
+      h1 { font-size: min(clamp(28px, 6vw, 46px), 13dvh); }
       h1 img {
         max-height: 13dvh;
         width: auto;
@@ -1679,7 +1544,7 @@
         transition: none !important;
       }
     }
-
+    
     .soon {
       min-height: 100dvh;
       display: flex;
@@ -1693,7 +1558,7 @@
       position: relative;
       width: min(86vw, 420px);
       aspect-ratio: 1 / 1;
-      background: url("assets/Labu polos.png") center / contain no-repeat;
+      background: url("assets/Labu polos.png") center/contain no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1715,7 +1580,7 @@
       display: block;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 5px 0 rgba(26, 58, 143, .8));
+      filter: drop-shadow(0 5px 0 rgba(26,58,143,.8));
     }
 
     .soon-s {
@@ -1726,13 +1591,13 @@
       line-height: 1.5;
       color: var(--plum);
     }
-
+    
     .a-tag {
       display: inline-block;
       margin-top: 18px;
       padding: 5px 14px;
       border-radius: 999px;
-      background: rgba(18, 14, 43, .6);
+      background: rgba(18,14,43,.6);
       border: 2px solid var(--butter);
       font-size: 13px;
       font-weight: 700;
@@ -1778,7 +1643,7 @@
     .a-sheet .a-after {
       margin: 22px 0 0;
     }
-
+    
     .web {
       position: fixed;
       z-index: 0;
@@ -1800,7 +1665,7 @@
       top: calc(-15px + env(safe-area-inset-top, 0px));
       scale: -1 1;
     }
-
+    
     @media (min-width: 900px) {
       .web.r {
         right: 3px;
@@ -1809,7 +1674,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="stars" id="stars"></div>
 
@@ -1845,12 +1709,12 @@
     const ORDER = ["home", "about", "rules", "join", "caretaker", "trick"];
 
     const SLUGS = {
-      home: "home",
-      about: "about-us",
-      rules: "house-rules",
-      join: "key-to-other-houses",
+      home:      "home",
+      about:     "about-us",
+      rules:     "house-rules",
+      join:      "key-to-other-houses",
       caretaker: "the-moths",
-      trick: "trick-or-treat"
+      trick:     "trick-or-treat"
     };
 
     const href = id => "#" + SLUGS[id];
@@ -1895,14 +1759,14 @@
     const HOME_TITLE_IMG = "assets/Texts/Cover2.png";
 
     const TITLE_IMGS = {
-      about: "assets/Texts/About Us.png",
-      rules: "assets/Texts/House Rules.png",
-      join: "assets/Texts/Key to Other Houses.png",
+      about:     "assets/Texts/About Us.png",
+      rules:     "assets/Texts/House Rules.png",
+      join:      "assets/Texts/Key to Other Houses.png",
       caretaker: "assets/Texts/The Moths.png"
     };
 
     const USE = {
-      knob: [1, 5, 2, 6],
+      knob:  [1, 5, 2, 6],
       rules: [1, 2, 3, 4, 5, 6, 7, 8]
     };
 
@@ -1923,9 +1787,7 @@
     let page = "home";
 
     const probe = new Image();
-    probe.onerror = () => {
-      $("logo").textContent = SITE;
-    };
+    probe.onerror = () => { $("logo").textContent = SITE; };
     probe.src = "assets/Logo.png";
 
     function renderTitle(text) {
@@ -1969,37 +1831,13 @@
     const TZ_LABEL = "WIB";
 
     const ADMINS = [
-      {
-        name: "Jacqueline Jones",
-        photo: "assets/CT/Jac.png",
-        popup: "assets/CT/Web Jac.png",
-        hours: [[13, 18], [13, 18], [13, 18], [13, 18], [13, 18], [13, 18], [13, 18]]
-      },
-      {
-        name: "Katsu Feline",
-        photo: "assets/CT/Kat.png",
-        popup: "assets/CT/Web Kat.png",
-        hours: [[8, 13], [8, 13], [8, 13], [8, 13], [8, 13], [8, 13], [8, 13]]
-      },
-      {
-        name: "Gembili Louvat",
-        photo: "assets/CT/Mbil.png",
-        popup: "assets/CT/Web Mbil.png",
-        hours: [[18, 23], [18, 23], [18, 23], [18, 23], [18, 23], [18, 23], [18, 23]]
-      }
+      { name: "Jacqueline Jones", photo: "assets/CT/Jac.png", popup: "assets/CT/Web Jac.png", hours: [[13, 18], [13, 18], [13, 18], [13, 18], [13, 18], [13, 18], [13, 18]] },
+      { name: "Katsu Feline", photo: "assets/CT/Katsu.png", popup: "assets/CT/Web Kat.png", hours: [[8, 13], [8, 13], [8, 13], [8, 13], [8, 13], [8, 13], [8, 13]] },
+      { name: "Gembili Louvat", photo: "assets/CT/Mbil.png", popup: "assets/CT/Web Mbil.png", hours: [[18, 23], [18, 23], [18, 23], [18, 23], [18, 23], [18, 23], [18, 23]] }
     ];
 
     const U = {
-      en: {
-        open: "Tap to see details",
-        hrs: "Working hours",
-        today: "Today: ",
-        off: "day off",
-        to: " to ",
-        on: "On duty now",
-        offd: "Off duty",
-        dl: ["M", "T", "W", "T", "F", "S", "S"]
-      }
+      en: { open: "Tap to see details", hrs: "Working hours", today: "Today: ", off: "day off", to: " to ", on: "On duty now", offd: "Off duty", dl: ["M", "T", "W", "T", "F", "S", "S"] }
     };
 
     const C = {
@@ -2011,6 +1849,7 @@
             "But a mirror is only ever a likeness. Every kindness here is sewn with a fine and glittering thread, and the price of such devotion is small and shining: two buttons, stitched where your eyes once were. Stay long enough, and the Other Mother will relish the last of you, until your soul is no more than another small, obedient light upon her mantelpiece.",
             "Yet the door remains open for now, and the lamps are lit."
           ],
+
           ask: "<b>Would you be able to resist?<br>Or would you let them sew the buttons to your eyes?</b>",
           after: [
             "<i>The adventure lies before you, and the choice, as ever, is yours alone.</i>"
@@ -2020,38 +1859,14 @@
           l: "A few simple rules keep this place cozy. Tap a rule to read more.",
           d: "Longer explanation of this rule, with an example of what is and isn't okay.",
           r: [
-            [
-              "Limited Interaction",
-              "Mirrors of Midnight is a closed agency where all interactions are strictly limited to our own circle. Interacting and mentioning outsiders, also appearances in public groups is strictly prohibited."
-            ],
-            [
-              "Allowed Face Claim",
-              "We accept all-star face claims born between 2000 – 2010."
-            ],
-            [
-              "Account Policy",
-              "Each Doll is required to only use one account. If there is any issue with your account, please contact the Caretaker immediately."
-            ],
-            [
-              "Muse Changes",
-              "Hiatus and Temporary Swap aren’t allowed. However, there will be a muse change session later on, with further details to be announced."
-            ],
-            [
-              "Keep It Comfortable",
-              "Let’s keep things comfortable for everyone. Harsh or offensive jokes, doxing, NSFW content, or bringing up topics that may offend others are strictly prohibited."
-            ],
-            [
-              "Event Duration",
-              "Mirrors of Midnight will run for 7 days. We encourage everyone to stay active, take part throughout the event, follow the rules, and make the most of our time together."
-            ],
-            [
-              "Maintenance Hours",
-              "Maintenance Hour starts at 22:00 WIB every day for point calculation."
-            ],
-            [
-              "Point Calculation System",
-              "We use an average point system. Each Doll's daily points are calculated based on the overall average. However, on the first day, everyone must reach a minimum of 1,000 points.<br>Because recent changes on Facebook have made points no longer visible, we also have an alternative calculation system: counting the number of posts and comments per day with a minimum of 5 posts and 75 comments."
-            ]
+            ["Limited Interaction", "Mirrors of Midnight is a closed agency where all interactions are strictly limited to our own circle. Interacting and mentioning outsiders, also appearances in public groups is strictly prohibited."],
+            ["Allowed Face Claim", "We accept all-star face claims born between 2000 – 2010."],
+            ["Account Policy", "Each Doll is required to only use one account. If there is any issue with your account, please contact the Caretaker immediately."],
+            ["Muse Changes", "Hiatus and Temporary Swap aren’t allowed. However, there will be a muse change session later on, with further details to be announced."],
+            ["Keep It Comfortable", "Let’s keep things comfortable for everyone. Harsh or offensive jokes, doxing, NSFW content, or bringing up topics that may offend others are strictly prohibited."],
+            ["Event Duration", "Mirrors of Midnight will run for 7 days. We encourage everyone to stay active, take part throughout the event, follow the rules, and make the most of our time together."],
+            ["Maintenance Hours", "Maintenance Hour starts at 22:00 WIB every day for point calculation."],
+            ["Point Calculation System", "We use an average point system. Each Doll's daily points are calculated based on the overall average. However, on the first day, everyone must reach a minimum of 1,000 points.<br>Because recent changes on Facebook have made points no longer visible, we also have an alternative calculation system: counting the number of posts and comments per day with a minimum of 5 posts and 75 comments."]
           ]
         },
         join: {
@@ -2069,9 +1884,9 @@
         care: {
           l: "Meet the three people who keep the lights on. Tap a card to see details about them.",
           ad: [
-            `Jacqueline is the one that brings serenity in a way that makes the entire room feel more stable. She is graceful without effort and somewhat dreamy when her eyes always look like they are going far away, somewhere beyond the light of the lamp. Watch over her by the little door to our Other World, and you will see how little she talks and how much she sees. She misses nothing.<br>Her warning is not a threat; it is something that she knows from painful experience. All of the wishes she has ever made have come true, and each one has cost her much more than she has received. This is why she warns gently, like you would warn a friend away from sticking a hand into the fire. <i>Mysterious, yes, but never cold, and the keeper of all of the whispered wishes of this house. In times of trouble, you turn to her.</i>`,
-            `The person who is always a few steps ahead of everyone else, like a black cat who knows all along where the door will take him—that would be best described as Katsu. He is the one who takes care of the entire house, with a stable grip, some wise words, and a perfect sense of humor. He is soothing without the need for unnecessary drama, and he is way too smart for his own good.<br>Katsu’s words represent his philosophy of life. They perceive his bizarre sense of humor and laughter as something weird, but Katsu was never offended by their misunderstanding of his personality. It is precisely because of his strange attitude that no one pays attention to how observant he is and helps keep the atmosphere lighthearted in a home that does not deserve it. Warning to anyone who dares: whenever he winks at you, you will be receiving a lesson on how to never escape his charm. <i>And if anyone ever promises you a “better” world with button-like eyes, he will be the first to warn you against it. 🐈‍⬛</i>`,
-            `Gembili is the youngest; she is the bright one who runs all over the place, just like a pumpkin stuffed with candies. She adds sparkle wherever she goes, with a laugh to any ghostly occasion and a warm embrace to each frightened visitor. Think tiny ghost energy, but with confetti, that’s her. When she’s happy, the whole house knows it, and when she’s upset, nobody has to guess. She doesn’t hide anything, and that openness is part of why people trust her.<br>Her quote is the kindest one she can ever utter. Originally it was a Beldam’s offer, which Gembili transformed into a promise. A promise that no one will be left lonely here and that no one will be left feeling small after having been inside the Palace. She tells the words to the shy creatures who lurk around the little door, and she means it. Soon after she starts cheering, there is little possibility of leaving the room feeling sad. <i>This is all she sews into this world of Others.</i>`
+  `Jacqueline is the one that brings serenity in a way that makes the entire room feel more stable. She is graceful without effort and somewhat dreamy when her eyes always look like they are going far away, somewhere beyond the light of the lamp. Watch over her by the little door to our Other World, and you will see how little she talks and how much she sees. She misses nothing.<br>Her warning is not a threat; it is something that she knows from painful experience. All of the wishes she has ever made have come true, and each one has cost her much more than she has received. This is why she warns gently, like you would warn a friend away from sticking a hand into the fire. <i>Mysterious, yes, but never cold, and the keeper of all of the whispered wishes of this house. In times of trouble, you turn to her.</i>`,
+  `The person who is always a few steps ahead of everyone else, like a black cat who knows all along where the door will take him—that would be best described as Katsu. He is the one who takes care of the entire house, with a stable grip, some wise words, and a perfect sense of humor. He is soothing without the need for unnecessary drama, and he is way too smart for his own good.<br>Katsu’s words represent his philosophy of life. They perceive his bizarre sense of humor and laughter as something weird, but Katsu was never offended by their misunderstanding of his personality. It is precisely because of his strange attitude that no one pays attention to how observant he is and helps keep the atmosphere lighthearted in a home that does not deserve it. Warning to anyone who dares: whenever he winks at you, you will be receiving a lesson on how to never escape his charm. <i>And if anyone ever promises you a “better” world with button-like eyes, he will be the first to warn you against it. 🐈‍⬛</i>`,
+  `Gembili is the youngest; she is the bright one who runs all over the place, just like a pumpkin stuffed with candies. She adds sparkle wherever she goes, with a laugh to any ghostly occasion and a warm embrace to each frightened visitor. Think tiny ghost energy, but with confetti, that’s her. When she’s happy, the whole house knows it, and when she’s upset, nobody has to guess. She doesn’t hide anything, and that openness is part of why people trust her.<br>Her quote is the kindest one she can ever utter. Originally it was a Beldam’s offer, which Gembili transformed into a promise. A promise that no one will be left lonely here and that no one will be left feeling small after having been inside the Palace. She tells the words to the shy creatures who lurk around the little door, and she means it. Soon after she starts cheering, there is little possibility of leaving the room feeling sad. <i>This is all she sews into this world of Others.</i>`
           ]
         }
       }
@@ -2186,29 +2001,12 @@
       return w;
     }
 
-    const DK = {
-      Mon: 0,
-      Tue: 1,
-      Wed: 2,
-      Thu: 3,
-      Fri: 4,
-      Sat: 5,
-      Sun: 6
-    };
+    const DK = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
 
     function clock() {
-      const p = new Intl.DateTimeFormat("en-US", {
-        timeZone: TIMEZONE,
-        weekday: "short",
-        hour: "numeric",
-        minute: "numeric",
-        hour12: false
-      }).formatToParts(new Date());
+      const p = new Intl.DateTimeFormat("en-US", { timeZone: TIMEZONE, weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
       const g = t => p.find(x => x.type === t).value;
-      return {
-        day: DK[g("weekday")],
-        hour: parseInt(g("hour"), 10) % 24 + parseInt(g("minute"), 10) / 60
-      };
+      return { day: DK[g("weekday")], hour: parseInt(g("hour"), 10) % 24 + parseInt(g("minute"), 10) / 60 };
     }
 
     const hh = v => String(v % 24).padStart(2, "0") + ":00";
@@ -2232,10 +2030,7 @@
         x.querySelector(".tp").textContent = u.open;
         const im = new Image();
         im.alt = "";
-        im.onload = () => {
-          x.querySelector(".in").remove();
-          x.querySelector(".ph").append(im);
-        };
+        im.onload = () => { x.querySelector(".in").remove(); x.querySelector(".ph").append(im); };
         im.src = a.photo;
         sts.push({ n: x.querySelector(".sts"), a });
         x.onclick = () => openCare(a, bio, u);
@@ -2279,10 +2074,7 @@
 
       const im = new Image();
       im.alt = "";
-      im.onload = () => {
-        body.querySelector(".in").remove();
-        body.querySelector(".ph").append(im);
-      };
+      im.onload = () => { body.querySelector(".in").remove(); body.querySelector(".ph").append(im); };
       im.src = a.popup || a.photo;
 
       lastFocus = document.activeElement;
@@ -2300,12 +2092,8 @@
     }
 
     $("mx").addEventListener("click", closeCare);
-    $("modal").addEventListener("click", e => {
-      if (e.target === $("modal")) closeCare();
-    });
-    addEventListener("keydown", e => {
-      if (e.key === "Escape") closeCare();
-    });
+    $("modal").addEventListener("click", e => { if (e.target === $("modal")) closeCare(); });
+    addEventListener("keydown", e => { if (e.key === "Escape") closeCare(); });
 
     const TRICK_OPEN_AT = "2026-10-30T10:00:00+07:00";
     const trickLocked = () => Date.now() < new Date(TRICK_OPEN_AT).getTime();
@@ -2315,6 +2103,7 @@
 
     function pgComingSoon() {
       const w = el("div", "wrap soon");
+
       const pump = el("div", "soon-pump");
 
       const h = el("h2", "soon-t");
@@ -2344,28 +2133,26 @@
     }
 
     const TRICK_IMGS = {
-      title: "assets/Texts/Trick-or-Treat.png",
+      title:    "assets/Texts/Trick-or-Treat.png",
       congrats: "assets/Texts/In For A Treat.png",
-      tricked: "assets/Texts/You_re Tricked!.png",
-      button: "assets/Texts/Enter Button.png",
-      box: "assets/Rounded Rectangle.png",
-      pumpkin: "assets/Labu kode.png"
+      tricked:  "assets/Texts/You_re Tricked!.png",
+      button:   "assets/Texts/Enter Button.png",
+      box:      "assets/Rounded Rectangle.png",
+      pumpkin:  "assets/Labu kode.png"
     };
-
+      
     const MSG_OK = "Mother has found your name and welcomes you home with a mango milkshake, so you won't need to join the warslot. Mother expects you to come home no later than <b>12.00 WIB on October 31st, 2026.</b> Should you come any later than that, you can expect nothing but <b>locked doors</b> as there is no room for bad children here.";
     const MSG_NO_1 = "Despite searching through the applications, Mother seems to find no trace of your code yet, Doll… But don't be sad, because you may still join through the <b>warslot at 19:00 WIB tonight.</b>";
     const MSG_OK_2 = "Mother watched the warslot unfold and among those who fought for a place, Mother has found your name, Doll. You have won your place at this home, so here is a mango milkshake for your victory. Mother expects you to come home no later than <b>12.00 WIB on October 31st, 2026.</b> Should you come any later than that, you can expect nothing but <b>locked doors</b> as there is no room for bad children here.";
     const MSG_NO_2 = "Mother watched the warslot unfold but every slot has been taken, and Mother still finds no trace of your code, Doll… Thank you for taking part. Mother is truly sorry that the doors of this home cannot open for you. May we meet again at a better opportunity.";
     const MSG_NO = MSG_NO_2;
-
+    
     const SHEETS = [
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTGWitiKCQgDLUk1PqOw-pc5pvhhgCrsjUpRzxdNOR10o7_a59U0FrfD8jgcVBdSjU4k1iL3T0HIZpi/pub?output=csv",
+      { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTGWitiKCQgDLUk1PqOw-pc5pvhhgCrsjUpRzxdNOR10o7_a59U0FrfD8jgcVBdSjU4k1iL3T0HIZpi/pub?output=csv",
         ok: MSG_OK,
         no: MSG_NO_1
       },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjck9g48QBN18UsgJsPQLnq2e6aTLMCpejP0aH0JgyBTrtiK6gtVWEnPa8kBcZcBUI7PHLr3-kBlKl/pub?output=csv",
+      { url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSjck9g48QBN18UsgJsPQLnq2e6aTLMCpejP0aH0JgyBTrtiK6gtVWEnPa8kBcZcBUI7PHLr3-kBlKl/pub?output=csv",
         ok: MSG_OK_2,
         no: MSG_NO_2
       }
@@ -2421,12 +2208,7 @@
         const k = (r[1] || "").trim().toUpperCase();
         const st = (r[2] || "").trim();
         if (k) {
-          map[k] = {
-            name,
-            pass: /^(lolos|lulus|ya|yes|true|1|y)$/i.test(st),
-            ok: s.ok,
-            no: s.no
-          };
+          map[k] = { name, pass: /^(lolos|lulus|ya|yes|true|1|y)$/i.test(st), ok: s.ok, no: s.no };
         }
       });
       return map;
@@ -2485,12 +2267,13 @@
       `);
 
       const q = sel => root.querySelector(sel);
+
       const pc = q(".pump-c");
       const CANVAS_W = 2698;
       const fit = () => root.style.setProperty("--s", pc.clientWidth / CANVAS_W);
       new ResizeObserver(fit).observe(pc);
       fit();
-
+      
       const rim = q(".rtitle img");
 
       root.style.setProperty("--pump-img", `url("${TRICK_IMGS.pumpkin}")`);
@@ -2499,7 +2282,7 @@
       {
         const pi = new Image();
         pi.onload = () => {
-          if (pi.naturalWidth / pi.naturalHeight > 1.1) {
+          if (pi.naturalWidth / pi.naturalHeight > 1.1) {   // gambar labu = satu kanvas penuh
             root.style.setProperty("--pl", "0%");
             root.style.setProperty("--pt", "0%");
             root.style.setProperty("--pw", "100%");
@@ -2514,13 +2297,8 @@
         t.onload = () => onOk(src);
         t.src = src;
       };
-      withImg(TRICK_IMGS.title, src => {
-        q(".ttitle img").src = src;
-      });
-      withImg(TRICK_IMGS.button, src => {
-        q(".go img").src = src;
-        root.classList.add("has-btn");
-      });
+      withImg(TRICK_IMGS.title, src => { q(".ttitle img").src = src; });
+      withImg(TRICK_IMGS.button, src => { q(".go img").src = src; root.classList.add("has-btn"); });
       {
         const bi = new Image();
         bi.onload = () => {
@@ -2534,11 +2312,7 @@
       const inp = q("input");
       const msg = q(".msg");
       const boxes = [...root.querySelectorAll(".boxes span")];
-      const esc = t => t.replace(/[&<>]/g, c => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;"
-      }[c]));
+      const esc = t => t.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
       function paint() {
         const v = inp.value.toUpperCase();
@@ -2667,11 +2441,7 @@
     function go() {
       const target = routeFromHash();
       if (target === page && $("title").childNodes.length) return;
-      if (reduce) {
-        page = target;
-        draw();
-        return;
-      }
+      if (reduce) { page = target; draw(); return; }
 
       const body = document.body;
       const inner = page !== "home" && target !== "home";
@@ -2726,9 +2496,7 @@
     bgm.volume = 0.4;
 
     let muted = false;
-    try {
-      muted = localStorage.getItem("muted") === "1";
-    } catch (e) {}
+    try { muted = localStorage.getItem("muted") === "1"; } catch (e) {}
 
     function updateSoundBtn() {
       $("sound").textContent = muted ? "🔇" : "🔊";
@@ -2742,11 +2510,8 @@
     $("sound").addEventListener("click", e => {
       e.stopPropagation();
       muted = !muted;
-      try {
-        localStorage.setItem("muted", muted ? "1" : "0");
-      } catch (err) {}
-      if (muted) bgm.pause();
-      else playBgm();
+      try { localStorage.setItem("muted", muted ? "1" : "0"); } catch (err) {}
+      if (muted) bgm.pause(); else playBgm();
       updateSoundBtn();
     });
 
@@ -2764,8 +2529,7 @@
     unlockEvents.forEach(ev => addEventListener(ev, unlockBgm));
 
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) bgm.pause();
-      else playBgm();
+      if (document.hidden) bgm.pause(); else playBgm();
     });
 
     const knobImgs = USE.knob.map(n => {
@@ -2807,5 +2571,4 @@
     draw();
   </script>
 </body>
-
 </html>
